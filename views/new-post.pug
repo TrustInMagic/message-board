@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  h2 #{title}
+
+  form(method='POST' action='')
+    .form-group 
+      label(for='post_title') Title: 
+      input(type='text', id='post_title', name='post_title' value=(post === undefined ? '' : post.title))
+      label(for='text') Content: 
+      textarea(type='text', id='text', name='text' value=(post === undefined ? '' : post.text))
+    button(type='submit') Post
+
+  a(href='/') Go Back
+
+  if errors 
+    ul.errors 
+      for error in errors 
+        li #{error.msg}

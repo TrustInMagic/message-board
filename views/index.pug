@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  div.nav
+    if !user 
+      a(href='/log-in') Log in 
+      a(href='/registration') Register
+    else 
+      a(href='/log-out') Log out
+  h1.header Message Board
+  if user
+    h3 Welcome back, #{user.full_name}!
+    a(href='/new-post').post-link New Post
+  else 
+    div Log in to see who posted what and post yourself!
+
+  .feed 
+    if posts 
+      for post in posts 
+        .post 
+          h4 #{post.title} 
+          div #{post.text} 
+          if user
+            div.detail By #{post.poster.full_name}, at: #{post.formatted_timestamp}
+          else 
+            div.detail.blur Johnson Martin, at: 23:45, 13/5/2023

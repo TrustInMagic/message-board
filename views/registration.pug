@@ -1,0 +1,25 @@
+extends layout 
+
+block content 
+  h2 #{title}
+  
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name: 
+      input(type='text', id='first_name', name='first_name' value=(first_name === undefined ? '' : first_name))
+      label(for='last_name') Last Name: 
+      input(type='text', id='last_name', name='last_name' value=(last_name === undefined ? '' : last_name))
+      label(for='email') Email: 
+      input(type='text', id='email', name='email' value=(email === undefined ? '' : email))
+      label(for='password') Password: 
+      input(type='password', id='password', name='password')
+      label(for='confirm_password') Confirm Password: 
+      input(type='password', id='confirm_password', name='confirm_password')
+    button(type='submit') Register
+
+  a(href='/') Go Back
+
+  if errors 
+    ul.errors
+      for error in errors 
+        li #{error.msg}
